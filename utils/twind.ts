@@ -3,6 +3,7 @@ import { Configuration, setup } from "twind";
 export * from "twind";
 export const config: Configuration = {
   darkMode: "class",
-  mode: "silent",
+  mode: "strict",
 };
+
 if (IS_BROWSER) setup(config);
