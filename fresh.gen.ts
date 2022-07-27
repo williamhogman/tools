@@ -2,32 +2,34 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/[name].tsx";
-import * as $1 from "./routes/api/qr.ts";
-import * as $2 from "./routes/countries/[code].tsx";
-import * as $3 from "./routes/countries/index.tsx";
-import * as $4 from "./routes/currencies/index.tsx";
-import * as $5 from "./routes/index.tsx";
-import * as $6 from "./routes/json-pretty-print.tsx";
-import * as $7 from "./routes/qr-code.tsx";
-import * as $8 from "./routes/timezones/[tz].tsx";
-import * as $9 from "./routes/timezones/offset/[tz].tsx";
+import * as $0 from "./routes/api/qr.ts";
+import * as $1 from "./routes/birthday/[slug].tsx";
+import * as $2 from "./routes/birthday/index.tsx";
+import * as $3 from "./routes/countries/[code].tsx";
+import * as $4 from "./routes/countries/index.tsx";
+import * as $5 from "./routes/currencies/index.tsx";
+import * as $6 from "./routes/index.tsx";
+import * as $7 from "./routes/json-pretty-print.tsx";
+import * as $8 from "./routes/qr-code.tsx";
+import * as $9 from "./routes/timezones/[tz].tsx";
+import * as $10 from "./routes/timezones/offset/[tz].tsx";
 import * as $$0 from "./islands/Counter.tsx";
 import * as $$1 from "./islands/JsonPrettyPrint.tsx";
 import * as $$2 from "./islands/QRCode.tsx";
 
 const manifest = {
   routes: {
-    "./routes/[name].tsx": $0,
-    "./routes/api/qr.ts": $1,
-    "./routes/countries/[code].tsx": $2,
-    "./routes/countries/index.tsx": $3,
-    "./routes/currencies/index.tsx": $4,
-    "./routes/index.tsx": $5,
-    "./routes/json-pretty-print.tsx": $6,
-    "./routes/qr-code.tsx": $7,
-    "./routes/timezones/[tz].tsx": $8,
-    "./routes/timezones/offset/[tz].tsx": $9,
+    "./routes/api/qr.ts": $0,
+    "./routes/birthday/[slug].tsx": $1,
+    "./routes/birthday/index.tsx": $2,
+    "./routes/countries/[code].tsx": $3,
+    "./routes/countries/index.tsx": $4,
+    "./routes/currencies/index.tsx": $5,
+    "./routes/index.tsx": $6,
+    "./routes/json-pretty-print.tsx": $7,
+    "./routes/qr-code.tsx": $8,
+    "./routes/timezones/[tz].tsx": $9,
+    "./routes/timezones/offset/[tz].tsx": $10,
   },
   islands: {
     "./islands/Counter.tsx": $$0,

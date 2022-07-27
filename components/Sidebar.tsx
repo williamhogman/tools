@@ -11,7 +11,8 @@ const LINKS: Link[] = [
   { name: "Json Pretty Print", href: "/json-pretty-print" },
   { name: "Generate QR code", href: "/qr-code" },
   { name: "Countries", href: "/countries" },
-  { name: "Curreencies", href: "/currencies" },
+  { name: "Currencies", href: "/currencies" },
+  { name: "Birthday Problem", href: "/birthday" },
 ];
 
 export default function Sidebar() {

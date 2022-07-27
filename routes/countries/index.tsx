@@ -1,8 +1,7 @@
 /** @jsx h */
-import { tw } from "@twind";
 import { h } from "preact";
-import Page from "../../components/Page.tsx";
 import HyperList from "../../components/HyperList.tsx";
+import Page from "../../components/Page.tsx";
 import { getNames } from "../../data/countries.ts";
 
 const OFFSET = 127397;
