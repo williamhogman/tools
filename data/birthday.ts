@@ -39,7 +39,6 @@ export function pbirthday(
   classes: number,
   conincident: number
 ): number {
-  console.log(n, classes, conincident);
   const k = conincident;
   const c = classes;
   if (k < 2) {

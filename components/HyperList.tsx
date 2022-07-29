@@ -1,36 +1,115 @@
 /** @jsx h */
 import { tw } from "@twind";
-import { h, ComponentChildren } from "preact";
+import { Fragment, h } from "preact";
 
 export interface HyperListItem {
   value: string;
   name: string;
+  group?: string;
+}
+
+export interface HyperGroup {
+  value: string;
+  text: string;
 }
 
 export interface HyperListProps {
   items: HyperListItem[];
+  groups?: HyperGroup[];
   urlBase?: string;
   heading?: string;
 }
 
-export default function HyperList({ items, urlBase, heading }: HyperListProps) {
+interface GroupSplit {
+  ungrouped: HyperListItem[];
+  groups: Array<{
+    group: HyperGroup;
+    content: HyperListItem[];
+  }>;
+}
+
+function splitGroups(items: HyperListItem[], groups: HyperGroup[]): GroupSplit {
+  return {
+    groups: groups
+      .map((group) => ({
+        group,
+        content: items.filter((item) => item.group == group.value),
+      }))
+      .filter((g) => g.content.length > 0),
+    ungrouped: items.filter((item) => item.group == null),
+  };
+}
+
+interface RenderSegment {
+  text: string | null;
+  items: HyperListItem[];
+}
+
+function renderSegments({ ungrouped, groups }: GroupSplit): RenderSegment[] {
+  const ug = ungrouped.length > 0 ? [{ text: null, items: ungrouped }] : []; //
+  const gs = groups.map(({ group: { text }, content }) => ({
+    text,
+    items: content,
+  }));
+  return gs.concat(ug);
+}
+
+function HyperListItem({
+  data: { value, name },
+  urlBase,
+}: {
+  data: HyperListItem;
+  urlBase?: string | null | undefined;
+}) {
+  return (
+    <li>
+      <a
+        class={tw`hover:underline underline-offset-8`}
+        href={(urlBase ?? "") + value}
+      >
+        {name}
+      </a>
+    </li>
+  );
+}
+
+export default function HyperList({
+  items,
+  urlBase,
+  heading,
+  groups: rawGroups,
+}: HyperListProps) {
   const headingEl =
     heading != null ? (
       <li class={tw`col-span-full text-xl`}>{heading}</li>
     ) : null;
-  return (
-    <ul class={tw`grid grid-cols-2 lg:grid-cols-3 list-none gap-0.5 ml-4`}>
-      {headingEl}
-      {items.map((x) => (
-        <li>
-          <a
-            class={tw`hover:underline underline-offset-8`}
-            href={(urlBase ?? "") + x.value}
-          >
-            {x.name}
-          </a>
-        </li>
-      ))}
-    </ul>
-  );
+
+  const rs = renderSegments(splitGroups(items ?? [], rawGroups ?? []));
+  const onlyOne = rs.length === 1;
+  const gridCls = tw`grid grid-cols-2 lg:grid-cols-3 list-none gap-0.5 ml-4`;
+  const rsEls = rs.map(({ text, items }) => (
+    <Fragment>
+      {text ? <h3 class={tw`font-bold`}>{text}</h3> : null}
+      <ul class={onlyOne ? gridCls : ""}>
+        {items.map((data) => (
+          <HyperListItem urlBase={urlBase} data={data} />
+        ))}
+      </ul>
+    </Fragment>
+  ));
+
+  if (rsEls.length == 0) {
+    return <div>Nothing to see here</div>;
+  } else if (rsEls.length == 1) {
+    return rsEls[0];
+  } else {
+    return (
+      <ul class={gridCls}>
+        {headingEl}
+        {rsEls.map((x) => (
+          <li>{x}</li>
+        ))}
+      </ul>
+    );
+  }
 }

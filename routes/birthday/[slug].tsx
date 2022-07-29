@@ -2,6 +2,10 @@
 import { PageProps } from "$fresh/server.ts";
 import { tw } from "@twind";
 import { h } from "preact";
+import HyperList, {
+  HyperGroup,
+  HyperListItem,
+} from "~/components/HyperList.tsx";
 import Page from "../../components/Page.tsx";
 import { pbirthday } from "../../data/birthday.ts";
 
@@ -18,9 +22,9 @@ interface Params {
 
 function paramsToUrl(p: Params): string {
   if (p.birthday) {
-    return `/birthday/whats-the-probability-of-${p.coincident}-people-sharing-a-birthday-in-a-room-of-${p.n}-people`;
+    return `whats-the-probability-of-${p.coincident}-people-sharing-a-birthday-in-a-room-of-${p.n}-people`;
   } else {
-    return `/birthday/${p.coincident}-coincidences-for-${p.n}-events-out-of-${p.classes}-classes`;
+    return `${p.coincident}-coincidences-for-${p.n}-events-out-of-${p.classes}-classes`;
   }
 }
 
@@ -124,45 +128,41 @@ function Options({ params }: { params: Params }) {
     birthday: false,
   }));
   const events = params.birthday ? "people" : "events";
-  return (
-    <div
-      class={tw`grid grid-cols-2`}
-      style={{
-        gridAutoFlow: "dense",
-      }}
-    >
-      <div>
-        <h3>{events}</h3>
-        <ul>
-          {N.map((x) => (
-            <li>
-              <a href={paramsToUrl(x)}>{`${x.n} ${events}`}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h3>{params.birthday ? "People per birthday" : "Coinciding events"}</h3>
-        <ul>
-          {coincidences.map((x) => (
-            <li>
-              <a href={paramsToUrl(x)}>{`${x.coincident} coinsidences`}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h3>Possibilities</h3>
-        <ul>
-          {possiblities.map((x) => (
-            <li>
-              <a href={paramsToUrl(x)}>{`${x.classes} possiblities`}</a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
+
+  const hli: HyperListItem[] = [
+    N.map((n) => ({
+      value: paramsToUrl(n),
+      name: `${n.n} ${events}`,
+      group: "n",
+    })),
+    coincidences.map((x) => ({
+      value: paramsToUrl(x),
+      name: `${x.coincident} coinsidences`,
+      group: "c",
+    })),
+    possiblities.map((x) => ({
+      value: paramsToUrl(x),
+      name: `${x.classes} possiblities`,
+      group: "classes",
+    })),
+  ].flat(1);
+
+  const hlg: HyperGroup[] = [
+    {
+      text: events,
+      value: "n",
+    },
+    {
+      text: params.birthday ? "People per birthday" : "Coinciding events",
+      value: "c",
+    },
+    {
+      text: "Possibilities",
+      value: "classes",
+    },
+  ];
+
+  return <HyperList items={hli} groups={hlg} />;
 }
 
 export default function Birthday(props: PageProps) {
