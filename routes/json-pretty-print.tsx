@@ -1,6 +1,3 @@
-/** @jsx h */
-import { tw } from "@twind";
-import { h } from "preact";
 import Page from "../components/Page.tsx";
 import JsonPrettyPrint from "../islands/JsonPrettyPrint.tsx";
 

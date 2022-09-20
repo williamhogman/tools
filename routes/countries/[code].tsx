@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h } from "preact";
-import { tw } from "@twind";
 import { PageProps, Handlers } from "$fresh/server.ts";
 import Page from "../../components/Page.tsx";
 import { getFullInfo, CountryData, Idd, Name } from "../../data/countries.ts";
@@ -39,11 +36,11 @@ function BigNum({ num }: { num: number }) {
 
 function PillBadge(props: { name: string; value: string }) {
   return (
-    <span class={tw`flex`}>
-      <div class={tw`bg-indigo-300 text-white py-1 px-2 rounded-l-lg`}>
+    <span class="flex">
+      <div class="bg-indigo-300 text-white py-1 px-2 rounded-l-lg">
         {props.name}
       </div>
-      <div class={tw`bg-indigo-100 text-white p-1 rounded-r-lg`}>
+      <div class="bg-indigo-100 text-white p-1 rounded-r-lg">
         {props.value}
       </div>
     </span>
@@ -91,7 +88,7 @@ function Values({
     els.push(
       link != null ? (
         <a
-          class={tw`border-b-2 border-dotted border-indigo-300 hover:border-solid`}
+          class="border-b-2 border-dotted border-indigo-300 hover:border-solid"
           href={`${link}${linkSegments[i]}`}
         >
           {v}
@@ -124,14 +121,14 @@ function CountryNames({
     .map(([k, x]) => x.official);
   return (
     <hgroup>
-      <h1 class={tw`text-3xl`}>
+      <h1 class="text-3xl">
         {common}{" "}
-        <span class={tw`text-gray-500 italic`}>
+        <span class="text-gray-500 italic">
           <Values object={nativeNames} parenthesis />
         </span>
       </h1>
       <h2>
-        <span class={tw`text-gray-500 italic`}>Officially: </span>
+        <span class="text-gray-500 italic">Officially: </span>
 
         <span>
           {official} <Values object={officialNames} parenthesis />
@@ -168,7 +165,7 @@ export default function GreetPage(props: PageProps<CountryData | null>) {
       {data.unMember && data.independent ? (
         <p>An independent country in {data.subregion ?? data.region}</p>
       ) : null}
-      <div class={tw`flex gap-2 rounded my-4 flex-wrap`}>
+      <div class="flex gap-2 rounded my-4 flex-wrap">
         <PillBadge name={"alpha-2"} value={data.cca2} />
         <PillBadge name={"alpha-3"} value={data.cca3} />
         {data.ccn3 ? <PillBadge name={"num-3"} value={data.ccn3} /> : null}
@@ -185,7 +182,7 @@ export default function GreetPage(props: PageProps<CountryData | null>) {
 
       <div
         style={{ gridTemplateColumns: "20rem 1fr" }}
-        class={tw`grid gap-x-1`}
+        class="grid gap-x-1"
       >
         <div>Currency</div>
         <div>

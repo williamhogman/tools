@@ -1,7 +1,4 @@
-/** @jsx h */
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
-import { h } from "preact";
 import { useCallback, useState } from "preact/hooks";
 
 export default function QRCode() {
@@ -20,19 +17,19 @@ export default function QRCode() {
     []
   );
   return (
-    <form onSubmit={onSubmit} class={tw`grid gap-5`}>
+    <form onSubmit={onSubmit} class="grid gap-5">
       <input
         name="code"
         type="text"
         placeholder="Text to embed in the QR code"
         required
-        class={tw`border-1 p-1 border-dashed text-lg`}
+        class="border-1 p-1 border-dashed text-lg"
       />
-      <input class={tw`border-1 p-1`} type="submit" value="Generate" />
+      <input class="border-1 p-1" type="submit" value="Generate" />
       <output name="result" for="code">
         {code != "" ? (
           <img
-            class={tw`w-80 m-auto`}
+            class="w-80 m-auto"
             src={`/api/qr?d=${encodeURIComponent(code)}`}
           />
         ) : null}

@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from "preact";
 import Page from "../components/Page.tsx";
 import QRCode from "../islands/QRCode.tsx";
 

@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h } from "preact";
-import { tw } from "@twind";
 import Page from "../../components/Page.tsx";
 import HyperList from "../../components/HyperList.tsx";
 import currencies, { Currency } from "@data/currencies.ts";

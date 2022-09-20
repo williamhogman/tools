@@ -1,7 +1,4 @@
-/** @jsx h */
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
-import { h } from "preact";
 import { useCallback, useState } from "preact/hooks";
 
 function prettifyJSON(j: string): string {
@@ -32,16 +29,16 @@ export default function JsonPrettyPrint(props: Record<string, unknown>) {
     [setContent]
   );
   return (
-    <form onSubmit={onClick} class={tw`w-full flex flex-col`}>
+    <form onSubmit={onClick} class="w-full flex flex-col">
       <textarea
         autofocus
         onPaste={onPaste}
         onInput={onInput}
-        class={tw`w-full border-2 h-96 rounded outline-none`}
+        class="w-full border-2 h-96 rounded outline-none"
         value={content}
       />
       <input
-        class={tw`bg-gray-700 text-white py-2 rounded border-2 border-gray-400`}
+        class="bg-gray-700 text-white py-2 rounded border-2 border-gray-400"
         type="submit"
         disabled={!IS_BROWSER}
       >

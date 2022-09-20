@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h, Fragment } from "preact";
-import { tw } from "@twind";
 import { PageProps, Handlers } from "$fresh/server.ts";
 import Page from "../../../components/Page.tsx";
 
@@ -102,7 +99,7 @@ export default function TimezonesOffset(props: PageProps) {
         </ul>
       </nav>
       <div>
-        <ul class={tw`list-disc list-inside`}>
+        <ul class="list-disc list-inside">
           {tzMatches.map((x: any) => (
             <Timezone key={x.abbr} timezone={x} />
           ))}

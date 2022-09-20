@@ -1,6 +1,4 @@
-/** @jsx h */
-import { tw } from "@twind";
-import { Fragment, h } from "preact";
+import { tw } from "twind";
 
 export interface HyperListItem {
   value: string;
@@ -64,7 +62,7 @@ function HyperListItem({
   return (
     <li>
       <a
-        class={tw`hover:underline underline-offset-8`}
+        class="hover:underline underline-offset-8"
         href={(urlBase ?? "") + value}
       >
         {name}
@@ -81,7 +79,7 @@ export default function HyperList({
 }: HyperListProps) {
   const headingEl =
     heading != null ? (
-      <li class={tw`col-span-full text-xl`}>{heading}</li>
+      <li class="col-span-full text-xl">{heading}</li>
     ) : null;
 
   const rs = renderSegments(splitGroups(items ?? [], rawGroups ?? []));
@@ -89,7 +87,7 @@ export default function HyperList({
   const gridCls = tw`grid grid-cols-2 lg:grid-cols-3 list-none gap-0.5 ml-4`;
   const rsEls = rs.map(({ text, items }) => (
     <Fragment>
-      {text ? <h3 class={tw`font-bold`}>{text}</h3> : null}
+      {text ? <h3 class="font-bold">{text}</h3> : null}
       <ul class={onlyOne ? gridCls : ""}>
         {items.map((data) => (
           <HyperListItem urlBase={urlBase} data={data} />

@@ -1,7 +1,4 @@
-/** @jsx h */
 import { PageProps } from "$fresh/server.ts";
-import { tw } from "@twind";
-import { h } from "preact";
 import HyperList, {
   HyperGroup,
   HyperListItem,
@@ -104,7 +101,7 @@ function Pct({ p }: { p: number }) {
           style: "percent",
           maximumSignificantDigits: 10,
         })}
-        class={tw`text-xl`}
+        class="text-xl"
       >
         {pct}
       </span>

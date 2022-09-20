@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from "preact";
 import HyperList from "../../components/HyperList.tsx";
 import Page from "../../components/Page.tsx";
 
