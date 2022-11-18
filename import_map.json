@@ -1,6 +1,6 @@
 {
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.1.1/",
+    "$fresh/": "https://deno.land/x/fresh@1.1.2/",
     "preact": "https://esm.sh/preact@10.11.0",
     "preact/": "https://esm.sh/preact@10.11.0/",
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.4",
@@ -10,6 +10,7 @@
     "@components/": "./components/",
     "~/": "./",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1"
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1",
+    "qrcode": "https://esm.sh/qrcode@1.5.1"
   }
 }

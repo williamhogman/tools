@@ -1,5 +1,5 @@
 import { HandlerContext } from "$fresh/server.ts";
-import QRCode from "https://esm.sh/qrcode";
+import QRCode from "qrcode";
 
 export const handler = async (
   req: Request,

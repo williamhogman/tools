@@ -49,7 +49,7 @@ function renderSegments({ ungrouped, groups }: GroupSplit): RenderSegment[] {
     text,
     items: content,
   }));
-  return gs.concat(ug);
+  return [...ug, ...gs];
 }
 
 function HyperListItem({
@@ -78,22 +78,20 @@ export default function HyperList({
   groups: rawGroups,
 }: HyperListProps) {
   const headingEl =
-    heading != null ? (
-      <li class="col-span-full text-xl">{heading}</li>
-    ) : null;
+    heading != null ? <li class="col-span-full text-xl">{heading}</li> : null;
 
   const rs = renderSegments(splitGroups(items ?? [], rawGroups ?? []));
   const onlyOne = rs.length === 1;
   const gridCls = tw`grid grid-cols-2 lg:grid-cols-3 list-none gap-0.5 ml-4`;
   const rsEls = rs.map(({ text, items }) => (
-    <Fragment>
+    <>
       {text ? <h3 class="font-bold">{text}</h3> : null}
       <ul class={onlyOne ? gridCls : ""}>
         {items.map((data) => (
           <HyperListItem urlBase={urlBase} data={data} />
         ))}
       </ul>
-    </Fragment>
+    </>
   ));
 
   if (rsEls.length == 0) {

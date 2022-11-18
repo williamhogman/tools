@@ -1,10 +1,10 @@
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { JSX } from "preact";
 import { useCallback, useState } from "preact/hooks";
 
 export default function QRCode() {
   const [code, setCode] = useState("");
   const onSubmit = useCallback(
-    (e: h.JSX.TargetedEvent<HTMLFormElement, Event>) => {
+    (e: JSX.TargetedEvent<HTMLFormElement, Event>) => {
       e.preventDefault();
       const t = e.currentTarget;
       if (t == null) {
